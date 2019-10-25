@@ -133,17 +133,6 @@ textarea:input:focus {
   box-sizing: border-box;
 }
 
-/* The text label on the nodes */
-.label {
-  font-family: 'Lucida Console';
-  font-size: 12px;
-}
-
-/* The class for the 'icon/unicode_char' on the nodes */
-.label2 {
-  font-size: 18px;
-}
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -235,3 +224,86 @@ textarea:input:focus {
   color: lightgray;
 }
 
+.input-port, .output-port {
+  fill: #fff;
+  stroke: #222;
+  stroke-width: 3px;
+  r: 5px;
+  z-index: 20;
+}
+
+
+.input-port-bg, .output-port-bg {
+  fill: #fff;
+  r: 9px;
+  z-index: 19;
+}
+
+.box {
+  stroke: #f1f1f1;
+  fill: #f1f1f1;
+  stroke-width: 1px;
+  rx: 8px;
+  ry: 8px;
+}
+
+/* The text label on the nodes */
+.label, .label3 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  fill: #222;
+}
+
+.border {
+  rx: 8px;
+  ry: 8px;
+  fill-opacity: 0;
+  stroke: #222;
+  stroke-width: 0;
+}
+
+.joint-element.highlighted .border {
+  stroke-width: 0;
+
+}
+
+.select-1, .select-2, .select-3, .select-4, .select-5, .select-6 {
+  width: 6px;
+  height: 6px;
+  fill: #fff;
+  opacity: 0;
+}
+
+.select-1, .select-2, .select-3 {
+  y: -3px;
+}
+
+.select-4, .select-5, .select-6 {
+  y: 57px;
+}
+
+.select-1, .select-4 {
+  x: 10px
+}
+
+.select-2, .select-5 {
+  x: 75px;
+}
+
+.select-3, .select-6 {
+  x: 140px;
+}
+
+
+.joint-element.highlighted .box {
+  stroke: #222;
+  stroke-width: 1px;
+  fill: #fff;
+}
+
+.joint-element.highlighted .select-1, .joint-element.highlighted .select-2x, .joint-element.highlighted .select-3,
+.joint-element.highlighted .select-4, .joint-element.highlighted .select-5x, .joint-element.highlighted .select-6 {
+  opacity: 1;
+  stroke-width: 1px;
+}

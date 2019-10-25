@@ -63,14 +63,18 @@ export class Renderer implements Flo.Renderer {
 
     initializeNewNode(node : dia.Element, viewerDescriptor : Flo.ViewerDescriptor) {
       let metadata : Flo.ElementMetadata = node.attr('metadata');
+
       if (metadata) {
         node.attr('.label/text', node.attr('metadata/name'));
+        node.attr('.label3/text', node.attr('metadata/group'));
         let group = node.attr('metadata/group');
         if (group === 'source') {
           node.attr('.input-port/display','none');
+          node.attr('.input-port-bg/display','none');
         }
         if (group === 'sink') {
           node.attr('.output-port/display','none');
+          node.attr('.output-port-bg/display','none');
         }
       }
     }
@@ -82,7 +86,7 @@ export class Renderer implements Flo.Renderer {
           '.': {
             //filter: { name: 'dropShadow', args: { dx: 1, dy: 1, blur: 2 } }
           },
-          '.connection': { 'stroke-width': 3, 'stroke': 'black', 'stroke-linecap': 'round' },
+          '.connection': { 'stroke-width': 3, 'stroke': '#f1f1f1', 'stroke-linecap': 'round' },
           '.marker-arrowheads': { display: 'none' },
           '.tool-options': { display: 'none' }
         },

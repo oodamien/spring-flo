@@ -8,8 +8,8 @@ const $: any = _$;
 const isChrome: boolean = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 const isFF: boolean = navigator.userAgent.indexOf('Firefox') > 0;
 
-const IMAGE_W = 120;
-const IMAGE_H = 35;
+const IMAGE_W = 155;
+const IMAGE_H = 60;
 
 const ERROR_MARKER_SIZE: dia.Size = {width: 16, height: 16};
 
@@ -89,10 +89,20 @@ joint.shapes.flo.Node = joint.shapes.basic.Generic.extend({
   '<rect class="border"/>' +
   '<rect class="box"/>' +
   '<text class="label"/>' +
+  '<text class="label3"/>' +
   '<text class="label2"></text>' +
-  '<rect class="input-port" />' +
-  '<rect class="output-port"/>' +
-  '<rect class="output-port-cover"/>',
+  '<circle class="input-port-bg" />' +
+  '<circle class="output-port-bg"/>' +
+  '<circle class="input-port" />' +
+  '<circle class="output-port"/>' +
+  '<rect class="output-port-cover"/>' +
+  '<rect class="select-1"/>' +
+  '<rect class="select-2"/>' +
+  '<rect class="select-3"/>' +
+  '<rect class="select-3"/>' +
+  '<rect class="select-4"/>' +
+  '<rect class="select-5"/>' +
+  '<rect class="select-6"/>',
 
   defaults: joint.util.deepSupplement({
 
@@ -105,61 +115,72 @@ joint.shapes.flo.Node = joint.shapes.basic.Generic.extend({
       '.border': {
         width: IMAGE_W,
         height: IMAGE_H,
-        rx: 3,
-        ry: 3,
-        'fill-opacity': 0, // see through
-        stroke: '#eeeeee',
-        'stroke-width': 0
       },
 
       '.box': {
         width: IMAGE_W,
-        height: IMAGE_H,
-        rx: 3,
-        ry: 3,
-        //'fill-opacity': 0, // see through
-        stroke: '#6db33f',
-        fill: '#eeeeee',
-        'stroke-width': 1
+        height: IMAGE_H
       },
       '.input-port': {
         port: 'input',
-        height: 8, width: 8,
+        cx: 0, cy: ((IMAGE_H / 2) + .5),
         magnet: true,
-        fill: '#eeeeee',
-        transform: 'translate(' + -4 + ',' + ((IMAGE_H / 2 ) - 4) + ')',
-        stroke: '#34302d',
-        'stroke-width': 1
+      },
+      '.input-port-bg': {
+        port: 'input',
+        cx: 0, cy: ((IMAGE_H / 2) + .5),
+        magnet: true,
       },
       '.output-port': {
         port: 'output',
-        height: 8, width: 8,
+        cx: IMAGE_W, cy: ((IMAGE_H / 2) + .5),
         magnet: true,
-        fill: '#eeeeee',
-        transform: 'translate(' + (IMAGE_W - 4) + ',' + ((IMAGE_H / 2) - 4) + ')',
-        stroke: '#34302d',
-        'stroke-width': 1
+      },
+      '.output-port-bg': {
+        port: 'output',
+        cx: IMAGE_W, cy: ((IMAGE_H / 2) + .5),
+        magnet: true,
       },
       '.label': {
-        'text-anchor': 'middle',
-        'ref-x': 0.5, // jointjs specific: relative position to ref'd element
-        // 'ref-y': -12, // jointjs specific: relative position to ref'd element
-        'ref-y': 0.3,
-        ref: '.border', // jointjs specific: element for ref-x, ref-y
-        fill: 'black',
-        'font-size': 14
+        'text-anchor': 'left',
+        'ref-x': 40,
+        'ref-y': 12,
+        ref: '.border',
+      },
+      '.label3': {
+        'text-anchor': 'left',
+        'ref-x': 40,
+        'ref-y': 32,
+        ref: '.border',
       },
       '.label2': {
         'text': '\u21d2',
         'text-anchor': 'middle',
-        'ref-x': 0.15, // jointjs specific: relative position to ref'd element
-        'ref-y': 0.2, // jointjs specific: relative position to ref'd element
+        'ref-x': 20, // jointjs specific: relative position to ref'd element
+        'ref-y': 18, // jointjs specific: relative position to ref'd element
         ref: '.border', // jointjs specific: element for ref-x, ref-y
-        // transform: 'translate(' + (IMAGE_W/2) + ',' + (IMAGE_H/2) + ')',
         fill: 'black',
         'font-size': 24
       },
       '.shape': {
+      },
+      '.select-1': {
+        ref: '.border',
+      },
+      '.select-2': {
+        ref: '.border',
+      },
+      '.select-3': {
+        ref: '.border',
+      },
+      '.select-4': {
+        ref: '.border',
+      },
+      '.select-5': {
+        ref: '.border',
+      },
+      '.select-6': {
+        ref: '.border',
       },
       '.image': {
         width: IMAGE_W,
@@ -174,7 +195,7 @@ joint.shapes.flo.Link = joint.dia.Link.extend({
   defaults: joint.util.deepSupplement({
     type: joint.shapes.flo.LINK_TYPE,
     attrs: {
-      '.connection': { stroke: '#34302d', 'stroke-width': 2 },
+      '.connection': { stroke: '#34302d', 'stroke-width': 1 },
       // Lots of alternatives that have been played with:
 //	            '.smoooth': true
 //	            '.marker-source': { stroke: '#9B59B6', fill: '#9B59B6', d: 'M24.316,5.318,9.833,13.682,9.833,5.5,5.5,5.5,5.5,25.5,9.833,25.5,9.833,17.318,24.316,25.682z' },
@@ -729,4 +750,3 @@ export namespace Shapes {
 
   }
 }
-
